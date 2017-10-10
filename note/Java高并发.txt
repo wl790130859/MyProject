@@ -1,0 +1,133 @@
+一、技术架构
+		MySQL
+			表设计
+			SQL技巧
+			事物和行级锁
+		
+		MyBatis
+			DAO层设计和开发
+			MyBatis合理使用
+			MyBatis和Spring整合
+		
+		Spring
+			Spring IOC整合Service
+			声明式事物运用
+		
+		SpringMVC
+			Restful接口设计和使用
+			框架运作流程
+			Controller开发技巧
+		
+		前端
+			交互设计
+			jQuery
+			Bootstrap
+		
+		高并发
+			高并发点和高并发分析
+			优化思路并实现
+		
+		基于Maven创建项目
+		
+二、秒杀业务分析
+		1、秒杀业务的核心：库存的处理		
+		2、用户的购买行为：谁购买成功了，成功时间/有效期，付款/发货信息
+		3、秒杀的难点：
+			1)、竞争 ====>  事物&行级锁
+					事物： a、Start Transaction
+								b、Update 库存数量
+								c、Insert 购买明细
+								d、Commit
+					行级锁：事物等待
+					
+			2)、如何高效的处理竞争？解决高并发
+			
+		4、我们要实现那些秒杀功能
+			1）秒杀接口暴露：防止浏览器插件自动刷屏
+			2）执行秒杀
+			3）相关查询：列表查询、详情页查询等
+			
+		5、代码开发阶段
+			1）DAO设计编码：表设计、DAO接口、MyBatis如何实现DAO
+			2）Service设计编码：Service接口设计、编码实现、Spring管理Service、声明式事物管理
+			3）Web设计编码：Restful接口、前端交互等
+								
+三、DAO接口设计、mybatis的sql实现DAO 和mybatis集成spring		
+
+四、Service层接口设计和实现
+		Spring声明式事物回滚时间 运行期异常时进行回滚 所以要小心try catch
+		
+五、web层实现
+		1、前端交互流程设计（参看 img/3  img/4)
+		2、Restful
+				什么是Restful？ 兴起于Ruby的Rails，是一种优雅的URI表述方式。
+				意义在于能够反映出资源的状态和状态转移
+				Restful的规范：
+					GET：查询操作
+					POST：添加/修改操作  非密等操作
+					PUT：修改操作		密等操作
+					DELETE：删除操作
+				
+				URL设计	
+						/模块/资源/{标识}/集合1/...   
+						例如： /user/{uid}/friends   好友列表
+									/user/{uid}/followers   关注着列表
+									
+				秒杀API的URL设计
+						GET   /seckill/list   秒杀列表
+						GET   /seckill/{id}/detail   秒杀详情页
+						GET   /seckill/time/now   系统时间
+						POST   /seckill/{id}/exposer   暴露秒杀
+						POST   /seckill/{id}/{md5}/execution   执行秒杀
+						
+		3、SpringMVC
+				1、SpringMVC运行流程 （参看img/5）
+				2、Http请求地址映射原理 （参看img/6）
+				3、注解映射技巧 （参看img/7）
+						@RequestMapping注解
+								1）支持标准的额URL
+								2）支持Ant风格URL  （即?  *  ** 等字符。    ?  匹配一个字符    *  匹配任意字符    **  匹配任意的URL路径）
+								3）带{XXX}占位符的URL
+				4、请求方法细节处理
+						1）、请求参数绑定
+						2）、请求方式限制
+						3）、请求转发和重定向
+						4）、数据模型赋值
+						5）、返回json数据
+						6）、cookie访问
+						
+		4、bootstrap + jQuery
+		
+六、高并发的优化
+		1、易产生高并发的点：访问详情页、获取系统时间、地址暴露接口、执行秒杀操作
+		2、解决方案
+				1）详情页：部署CDN  detail静态化、静态资源css、js等
+				2）获取系统时间：我们已经将获取系统时间单独做了一个ajax接口了。这个不用优化 因为访问一次内存大约10ns。
+				3）地址暴露接口：（参看img/13）
+						分析：无法使用CDN缓存 
+								   但适合服务端缓存：redis等（redis可以做集群 可以扛住百万的qps）
+								   一致性维护成本低：秒杀对象改变了时候，可以修改我们的数据库或者缓存
+				4）秒杀操作优化分析
+						无法使用CDN缓存
+						后端缓存困难：库存问题
+						一行数据的竞争：热点商品
+				5）其他方案分析（成本高，一般是大公司才做）
+						原子计数器（redis/NoSQL）、记录行为消息（分布式MQ）、消费消息并落地（MySQL）
+				6）延迟分析
+						网络延迟 + Java的GC（垃圾回收机制）
+				7）优化分析
+						a、行级锁在Commit之后释放 ===>  减少行级锁持有时间
+						b、把客户端逻辑放到MySQL服务端，避免网络延迟和GC影响
+								---定制SQL方案：update /* + [auto_commit] */,  需要修改MySQL源码  
+								---使用存储过程：整个事务在MySQL端完成
+				
+		3、优化总结
+				前端控制：暴露接口、按钮防止重复点击
+				动静态数据分离：CDN缓存、后端缓存
+				事务竞争优化：减少事务锁时间
+		
+		
+		
+		
+		
+		

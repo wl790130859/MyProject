@@ -1,0 +1,2 @@
+观察者模式: Java Observable
+http://blog.csdn.net/bearray123/article/details/6175480
