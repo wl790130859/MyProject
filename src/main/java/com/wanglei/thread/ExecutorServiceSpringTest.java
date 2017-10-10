@@ -11,9 +11,9 @@ public class ExecutorServiceSpringTest {
     private ExecutorService fixedThreadPool;
 
     public void init() {
-        System.out.println("初始化成功");
+        System.out.println(this.getClass().getName()+"初始化成功");
         fixedThreadPool = Executors.newFixedThreadPool(4);
-        test("test");
+//        test("test");
     }
 
     int money = 100;
