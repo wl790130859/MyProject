@@ -1,4 +1,6 @@
 com\wanglei\dao\SuccessKilledDaoTest.class
 com\wanglei\service\SeckillServiceTest.class
+com\wanglei\service\TestNewObserverable.class
 com\wanglei\dao\SeckillDaoTest.class
+com\wanglei\test\BaseJunit4Test.class
 com\wanglei\dao\cache\RedisDaoTest.class

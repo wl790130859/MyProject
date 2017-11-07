@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/lib/aip-java-sdk-3.2.1.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/NewObservable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/NewObservableTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/NewObserverTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/ObserverTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/OneObserver.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/Subject.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/design/observable/TwoObserver.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/thread/ExecutorServiceSpringTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/thread/ExecutorServiceTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/until/Base64Util.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/until/FileUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/wanglei/until/HttpUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/wanglei/service/TestNewObserverable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/wanglei/test/BaseJunit4Test.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

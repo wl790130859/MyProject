@@ -13,12 +13,15 @@
   	<servlet-name>seckill-dispatcher</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<!-- 配置springMVC需要加载的文件
-  			spring-dao.xml  spring-service.xml  spring-web.xml
+  			spring-dao.xml  spring-service.xml  dispatcher-servlet.xml
   			Mybatis   =>  Spring  =>  SpringMVC
   	-->
   	<init-param>
   		<param-name>contextConfigLocation</param-name>
-  		<param-value>classpath:spring/spring-*.xml</param-value>
+  		<param-value>
+			classpath:spring/spring-*.xml
+			classpath:spring/dispatcher-servlet.xml
+		</param-value>
   	</init-param>
 	  <load-on-startup>1</load-on-startup>
 	  <async-supported>true</async-supported>

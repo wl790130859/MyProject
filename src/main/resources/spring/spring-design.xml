@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--声明被观察者-->
+	<bean id="newObservableTest" class="com.wanglei.design.observable.NewObservableTest"/>
+	<!--声明观察者-->
+	<bean id="newObserverTest" class="com.wanglei.design.observable.NewObserverTest"/>
+	<!--建立被观察者和观察者之间的耦合关系 当知道观察者--> <!--方法1：-->
+	<bean id="observerSub" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="newObservableTest"/> <!--指定被观察对象-->
+		<property name="targetMethod" value="addObserver"/><!--指定被观察的方法-->
+		<property name="arguments">  <!--指定观察对象-->
+			<list>
+				<ref bean="newObserverTest"></ref>
+			</list>
+		</property>
+	</bean>
+	<!--方法2-->
+	<bean id="newObserverTest2" class="com.wanglei.design.observable.NewObserverTest2" init-method="init">
+		<property name="newObservable" ref="newObservableTest"/>
+	</bean>
+</beans>
