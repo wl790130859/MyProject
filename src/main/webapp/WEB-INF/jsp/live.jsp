@@ -35,6 +35,7 @@
     <script type="text/javascript">
         var ws = null;
         var url = null;
+        var username = "${user}";
         var transports = [];
         function setConnected(connected) {
             document.getElementById('connect').disabled = connected;
@@ -50,14 +51,14 @@
 //            if ('WebSocket'in window) {
 //                ws= new WebSocket("ws://localhost:8080/websck");
 //            }else {
-            ws = new SockJS("http://localhost:8080/sockjs/websck");
+            ws = new SockJS("http://localhost:8076/sockjs/websck");
 //            }
             ws.onopen = function () {
                 setConnected(true);
-                log('Info: connection opened.');
+                log("恭喜"+username+"连接成功");
             };
             ws.onmessage = function (event) {
-                log('Received: ' + event.data);
+                log(event.data);
             };
             ws.onclose = function (event) {
                 setConnected(false);
@@ -137,6 +138,7 @@
         <div>
             <button id="connect"onclick="connect();">Connect</button>
             <button id="disconnect"disabled="disabled"onclick="disconnect();">Disconnect</button>
+            <span>${user}</span>
         </div>
         <div>
             <textarea id="message"style="width:350px">Here is a message!</textarea>

@@ -9,7 +9,7 @@ package com.wanglei.design.factory.factorymethod;
 public class Customer {
     public static void main(String[] args) {
         Factory1 factory1 = new Factory1();
-        factory1.createFactory();
+        Producter p = factory1.createFactory();
         Factory2 factory2 = new Factory2();
         factory2.createFactory();
     }
