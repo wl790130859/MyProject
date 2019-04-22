@@ -15,5 +15,7 @@ public class Subject extends Observable {
         System.out.println(22233222);
         System.out.println(222);
         System.out.println(1111);
+        System.out.println(1111333);
+        System.out.println(1111333111);
     }
 }

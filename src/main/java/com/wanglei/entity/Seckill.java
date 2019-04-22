@@ -6,6 +6,7 @@ public class Seckill {
 
 	private String test;
 
+	private long test2;
 	private long seckillId;
 	private String name;
 	private int number;
