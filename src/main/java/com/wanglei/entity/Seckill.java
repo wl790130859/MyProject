@@ -3,6 +3,7 @@ package com.wanglei.entity;
 import java.util.Date;
 
 public class Seckill {
+	private long test2;
 	private long seckillId;
 	private String name;
 	private int number;
